@@ -42,7 +42,7 @@ namespace ConsoleApp1
             //var xml = XElement.Load(@"/data.xml");
 
             var nodes = xml.Descendants("row").ToList();
-
+            /*
             for (var i = 0; i < nodes.Count; i++)
             {
                 var node = nodes[i];
@@ -51,7 +51,17 @@ namespace ConsoleApp1
                 item._m = getvalue(node, "Col2");
                 item._g = getvalue(node, "Col3");
                 result.Add(item);
-            }
+            }*/
+            nodes.ToList()
+                          .ForEach(node =>
+                          {
+                              Class1 item = new Class1();
+                              item._y = getvalue(node, "Col1");
+                              item._m = getvalue(node, "Col2");
+                              item._g = getvalue(node, "Col3");
+                              result.Add(item);
+                          });
+           
             return result;
         }
         private static string getvalue(XElement node, string v)
@@ -61,3 +71,28 @@ namespace ConsoleApp1
 
     }
 }
+/*nodes.ToList()
+               .ForEach(node =>
+               {
+                   OpenData item = new OpenData();
+                   item.id = int.Parse(getValue(node, "id"));
+                   item.資料集名稱 = getValue(node, "資料集名稱");
+                   item.主要欄位說明 = getValue(node, "主要欄位說明");
+                   item.服務分類 = getValue(node, "服務分類");
+                   result.Add(item);
+               });
+*/
+/*
+result = nodes.ToList()
+                .Select(node =>
+                {
+    OpenData item = new OpenData();
+
+    item.id = int.Parse(getValue(node, "id"));
+    item.資料集名稱 = getValue(node, "資料集名稱");
+    item.主要欄位說明 = getValue(node, "主要欄位說明");
+    item.服務分類 = getValue(node, "服務分類");
+    return item;
+}).ToList();
+result.Where(x => x.服務分類 != null).ToList();
+*/
