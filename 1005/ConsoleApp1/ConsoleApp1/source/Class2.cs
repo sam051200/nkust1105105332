@@ -9,9 +9,15 @@ namespace ConsoleApp1.source
 {
     class Class2
     {
-      
+        public Repository.OpenDataReository _RRR;
+
+        public Class2()
+        {
+            _RRR = new Repository.OpenDataReository();
+        }
         public  List<ConsoleApp1.Model.Class1> findopendata()
         {
+
             List<ConsoleApp1.Model.Class1> result = new List<Class1>();
             var xml = XElement.Load(@"C:\Users\sam\Desktop\軟體工程\1005\ConsoleApp1\data.xml");
             //var xml = XElement.Load(@"/data.xml");
@@ -28,6 +34,10 @@ namespace ConsoleApp1.source
                 result.Add(item);
             }
             return result;
+        }
+        public List<Class1> FindOpenDataFromDb(string name)
+        {
+            return _RRR.SelectAll(name);
         }
         public void ImportToDb(List<Class1> openDatas)
         {
